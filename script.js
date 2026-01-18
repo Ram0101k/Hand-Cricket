@@ -123,11 +123,11 @@ const startgame=()=> {
     compscore = 0;
     innings = 1;
     target = 0;
+    clearclick();
     userScoreDisplay.innerText = 0;
     compScoreDisplay.innerText = 0;
     userclick.innerText=0;
-    userclick.innerText=0;
-    clearclick();
+    compclick.innerText=0;
     let userinp=prompt("Choose even or odd for choice");
     userinp=userinp.toLowerCase();
     let compinp="";
@@ -190,5 +190,6 @@ const startgame=()=> {
     console.log()
     match();
 };
+
 
 newGameBtn.onclick = startgame;
