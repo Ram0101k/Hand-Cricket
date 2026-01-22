@@ -4,8 +4,8 @@ let innings=1;
 let target=0;
 let userscore=0;
 let compscore=0;
-let userclick=document.querySelector("#user-num");
-let compclick=document.querySelector("#comp-num");
+let userclick=document.getElementById("user-num");
+let compclick=document.getElementById("comp-num");
 const choices=document.querySelectorAll(".choice");
 const userScoreDisplay=document.getElementById("user-score");
 const compScoreDisplay=document.getElementById("comp-score");
@@ -117,7 +117,18 @@ const userbowling=()=> {
         };
     });
 };
-
+const usernumb=()=> {
+    let val=Number(prompt("Enter a number between 1 to 6: "));
+    if(isNaN(val)) {
+        alert("Enter Only Number, not letters.");
+        return usernumb();
+    } else if(val>6 || val<=0) {
+        alert("Choose Number between 1 to 6 only");
+        return usernumb();
+    } else {
+        return val;
+    }
+};
 const startgame=()=> {
     userscore = 0;
     compscore = 0;
@@ -130,14 +141,13 @@ const startgame=()=> {
     compclick.innerText=0;
     let userinp=prompt("Choose even or odd for choice");
     userinp=userinp.toLowerCase();
-    let compinp="";
-    if(userinp==="even") {
-        compinp="odd";
-    } else {
-        compinp="even";
+    if(userinp!=="even" && userinp!=="odd") {
+        alert("Choose only 'even' or 'odd'");
+        return startgame();
     }
+    let compinp=userinp==="even"?"odd":"even";
+    let userchoice=usernumb();
     console.log(`User Toss = ${userinp} and Computer Choice = ${compinp}`);
-    let userchoice=Number(prompt("Enter a number between 1 to 6: "));
     let comp=[1,2,3,4,5,6];
     let ind=Math.floor(Math.random()*6);
     let compchoice=comp[ind];
@@ -190,6 +200,5 @@ const startgame=()=> {
     console.log()
     match();
 };
-
 
 newGameBtn.onclick = startgame;
